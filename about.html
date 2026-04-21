@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — NexaFlow</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: #1a1a2e; line-height: 1.6; }
+    a { text-decoration: none; }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #6366f1; }
+    .nav-links a { margin-left: 2rem; color: #4a4a6a; font-weight: 500; }
+    .nav-links a:hover, .nav-links a.active { color: #6366f1; }
+
+    .page-header {
+      text-align: center;
+      padding: 5rem 5% 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .page-header p { font-size: 1.2rem; color: #6b6b8a; }
+
+    .story {
+      padding: 3rem 5%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .story h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+    .story p { color: #6b6b8a; margin-bottom: 1.5rem; font-size: 1.1rem; }
+
+    .values {
+      padding: 5rem 5%;
+      background: #f8f8fc;
+    }
+    .values h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .value-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+    }
+    .value-card h4 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+    .value-card p { color: #6b6b8a; font-size: 0.95rem; }
+
+    .team {
+      padding: 5rem 5%;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .team h2 { font-size: 2.5rem; margin-bottom: 3rem; }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+    }
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+    .team-member h4 { margin-bottom: 0.25rem; }
+    .team-member span { color: #6b6b8a; font-size: 0.9rem; }
+    .team-member p { color: #6b6b8a; font-size: 0.85rem; margin-top: 0.75rem; }
+
+    .cta {
+      padding: 5rem 5%;
+      background: #1a1a2e;
+      color: white;
+      text-align: center;
+    }
+    .cta h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .cta p { color: #a0a0c0; margin-bottom: 2rem; }
+    .cta a {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: #6366f1;
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .cta a:hover { background: #4f46e5; }
+
+    footer { padding: 2rem 5%; text-align: center; color: #6b6b8a; font-size: 0.9rem; background: #1a1a2e; border-top: 1px solid #2a2a4e; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">NexaFlow</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html" class="active">About</a>
+      <a href="blog.html">Blog</a>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <h1>About NexaFlow</h1>
+    <p>We build AI systems that actually ship — and actually work.</p>
+  </section>
+
+  <section class="story">
+    <h2>Our Story</h2>
+    <p>NexaFlow started because we were tired of AI projects that died in proof-of-concept. We'd seen it happen at big companies and startups alike — impressive demos, zero production.</p>
+    <p>So we built NexaFlow around a simple principle: <strong>ship AI that works in the real world</strong>. We focus on automation and RAG systems where the ROI is measurable and the failure modes are understood.</p>
+    <p>Today we're a small, focused team of engineers who've collectively shipped AI products used by hundreds of thousands of people. We keep things lean because lean means fast — and speed matters when you're building with AI that evolves weekly.</p>
+  </section>
+
+  <section class="values">
+    <h2>What We Believe</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <h4>Production beats proof-of-concept</h4>
+        <p>A system that works 80% of the time in demo and fails in production is worthless. We optimize for real-world reliability from day one.</p>
+      </div>
+      <div class="value-card">
+        <h4>Measure everything</h4>
+        <p>AI without metrics is a belief system. We instrument everything — latency, accuracy, cost — so you know exactly what you're getting.</p>
+      </div>
+      <div class="value-card">
+        <h4>Simple over clever</h4>
+        <p>The best AI pipeline is the one your team can actually maintain. We resist over-engineering and pick boring, proven tools when they work.</p>
+      </div>
+      <div class="value-card">
+        <h4>Transparent about limitations</h4>
+        <p>LLMs fail in predictable and unpredictable ways. We'll tell you what can go wrong — because surprises in production are expensive.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="team">
+    <h2>The Team</h2>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="avatar">AK</div>
+        <h4>Arjun Kapoor</h4>
+        <span>Co-Founder, Engineering</span>
+        <p>Previously ML Lead at a Series C fintech. Built recommendation systems at scale.</p>
+      </div>
+      <div class="team-member">
+        <div class="avatar">PS</div>
+        <h4>Priya Sharma</h4>
+        <span>Co-Founder, Product</span>
+        <p>Ex-Stripe, ex-Uber. 8 years building developer tools and payment infrastructure.</p>
+      </div>
+      <div class="team-member">
+        <div class="avatar">RL</div>
+        <h4>Raj Liu</h4>
+        <span>Senior AI Engineer</span>
+        <p>PhD in NLP from CMU. Published research on retrieval-augmented generation.</p>
+      </div>
+      <div class="team-member">
+        <div class="avatar">SM</div>
+        <h4>Sarah Mitchell</h4>
+        <span>AI Engineer</span>
+        <p>Built autonomous agent systems at a robotics startup. Generalist with full-stack skills.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Want to work with us?</h2>
+    <p>We're always looking for talented engineers and interesting problems.</p>
+    <a href="mailto:hello@nexaflow.ai">Get in touch</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 NexaFlow AI Agency. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

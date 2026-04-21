@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — NexaFlow</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: #1a1a2e; line-height: 1.6; }
+    a { text-decoration: none; }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #6366f1; }
+    .nav-links a { margin-left: 2rem; color: #4a4a6a; font-weight: 500; }
+    .nav-links a:hover, .nav-links a.active { color: #6366f1; }
+
+    .page-header {
+      text-align: center;
+      padding: 5rem 5% 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .page-header p { font-size: 1.2rem; color: #6b6b8a; }
+
+    .services-detail {
+      padding: 3rem 5%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-detail-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 4rem 0;
+      border-bottom: 1px solid #e8e8f0;
+    }
+    .service-detail-card:last-child { border-bottom: none; }
+    .service-detail-card.reverse { direction: rtl; }
+    .service-detail-card.reverse > * { direction: ltr; }
+
+    .service-detail-card h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .service-detail-card p { color: #6b6b8a; margin-bottom: 1.5rem; }
+    .service-detail-card ul { list-style: none; }
+    .service-detail-card li { padding: 0.5rem 0; color: #6b6b8a; }
+    .service-detail-card li::before { content: "✓"; color: #6366f1; margin-right: 0.75rem; font-weight: bold; }
+
+    .service-visual {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 16px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .process {
+      padding: 5rem 5%;
+      background: #f8f8fc;
+      text-align: center;
+    }
+    .process h2 { font-size: 2.5rem; margin-bottom: 3rem; }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .process-step {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+    }
+    .process-step h4 { font-size: 2rem; color: #6366f1; margin-bottom: 0.5rem; }
+    .process-step h5 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .process-step p { color: #6b6b8a; font-size: 0.9rem; }
+
+    footer { padding: 2rem 5%; text-align: center; color: #6b6b8a; font-size: 0.9rem; background: #1a1a2e; border-top: 1px solid #2a2a4e; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">NexaFlow</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <h1>What We Build</h1>
+    <p>From chatbots to full-scale AI infrastructure — we design, build, and launch AI systems that actually work.</p>
+  </section>
+
+  <section class="services-detail">
+
+    <div class="service-detail-card">
+      <div>
+        <h2>RAG & Chatbots</h2>
+        <p>Deploy AI assistants that understand your data. We build Retrieval-Augmented Generation systems that give accurate, context-aware answers — not generic ChatGPT responses.</p>
+        <ul>
+          <li>Custom trained on your documents</li>
+          <li>Embeddable chat widget or API</li>
+          <li>Multi-source data fusion</li>
+          <li>Citation and source tracking</li>
+          <li>Human-in-the-loop fallback</li>
+        </ul>
+      </div>
+      <div class="service-visual">RAG</div>
+    </div>
+
+    <div class="service-detail-card reverse">
+      <div>
+        <h2>Workflow Automation</h2>
+        <p>Eliminate repetitive manual tasks. We map your workflows and build reliable automations that handle the busywork — so your team can focus on decisions that actually need human judgment.</p>
+        <ul>
+          <li>Cross-tool data sync and routing</li>
+          <li>Approval pipelines with escalation</li>
+          <li>Scheduled reporting and alerts</li>
+          <li>Error handling and retry logic</li>
+          <li>Audit logs and monitoring</li>
+        </ul>
+      </div>
+      <div class="service-visual">AUTOMATE</div>
+    </div>
+
+    <div class="service-detail-card">
+      <div>
+        <h2>AI Integration</h2>
+        <p>Plug LLMs into your existing stack. We connect AI capabilities to your CRM, support tools, databases, and internal systems — without replacing what already works.</p>
+        <ul>
+          <li>CRM data enrichment with AI</li>
+          <li>Auto-reply and smart routing</li>
+          <li>Sentiment analysis on messages</li>
+          <li>Document classification</li>
+          <li>Custom fine-tuned models</li>
+        </ul>
+      </div>
+      <div class="service-visual">INTEGRATE</div>
+    </div>
+
+    <div class="service-detail-card reverse">
+      <div>
+        <h2>Custom AI Apps</h2>
+        <p>Have a unique problem? We build end-to-end AI applications from scratch — from architecture design to production deployment and ongoing support.</p>
+        <ul>
+          <li>Full-stack web apps with AI features</li>
+          <li>Internal tools and dashboards</li>
+          <li>Multimodal (image + text + audio)</li>
+          <li>Real-time AI pipelines</li>
+          <li>SLA-backed production support</li>
+        </ul>
+      </div>
+      <div class="service-visual">BUILD</div>
+    </div>
+
+  </section>
+
+  <section class="process">
+    <h2>How We Work</h2>
+    <div class="process-steps">
+      <div class="process-step">
+        <h4>01</h4>
+        <h5>Discover</h5>
+        <p>We deep-dive into your workflows, pain points, and goals. You'll get a clear picture of what's possible.</p>
+      </div>
+      <div class="process-step">
+        <h4>02</h4>
+        <h5>Prototype</h5>
+        <p>We build a working POC in days, not weeks. You'll see AI handling your actual use cases early.</p>
+      </div>
+      <div class="process-step">
+        <h4>03</h4>
+        <h5>Ship</h5>
+        <p>We polish, deploy, and hand off with docs. Your team is trained and confident before we leave.</p>
+      </div>
+      <div class="process-step">
+        <h4>04</h4>
+        <h5>Iterate</h5>
+        <p>AI systems improve with data. We monitor, measure, and continuously refine based on real usage.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 NexaFlow AI Agency. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

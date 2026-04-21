@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — NexaFlow</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: #1a1a2e; line-height: 1.6; }
+    a { text-decoration: none; }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #6366f1; }
+    .nav-links a { margin-left: 2rem; color: #4a4a6a; font-weight: 500; }
+    .nav-links a:hover, .nav-links a.active { color: #6366f1; }
+
+    .page-header {
+      text-align: center;
+      padding: 5rem 5% 3rem;
+    }
+    .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .page-header p { font-size: 1.2rem; color: #6b6b8a; }
+
+    .faq-toggle {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #6b6b8a;
+      font-size: 0.9rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 3rem 5%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      position: relative;
+      border: 1px solid #e8e8f0;
+    }
+    .pricing-card.featured {
+      border: 2px solid #6366f1;
+      box-shadow: 0 8px 40px rgba(99, 102, 241, 0.15);
+    }
+    .pricing-card.featured .badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #6366f1;
+      color: white;
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .pricing-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .pricing-card .price { font-size: 3rem; font-weight: 800; margin-bottom: 0.25rem; }
+    .pricing-card .price span { font-size: 1rem; font-weight: 400; color: #6b6b8a; }
+    .pricing-card .description { color: #6b6b8a; font-size: 0.9rem; margin-bottom: 2rem; }
+    .pricing-card hr { border: none; border-top: 1px solid #e8e8f0; margin: 2rem 0; }
+    .pricing-card ul { list-style: none; }
+    .pricing-card li { padding: 0.5rem 0; font-size: 0.95rem; }
+    .pricing-card li::before { content: "✓"; color: #6366f1; margin-right: 0.75rem; font-weight: bold; }
+    .pricing-card .not-included { color: #a0a0b0; text-decoration: line-through; }
+    .pricing-card .not-included::before { content: "✗"; color: #a0a0b0; }
+
+    .pricing-cta {
+      display: block;
+      text-align: center;
+      padding: 1rem;
+      background: #f8f8fc;
+      color: #1a1a2e;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-top: 2rem;
+      transition: background 0.3s;
+    }
+    .pricing-cta:hover { background: #e8e8f4; }
+    .pricing-card.featured .pricing-cta {
+      background: #6366f1;
+      color: white;
+    }
+    .pricing-card.featured .pricing-cta:hover { background: #4f46e5; }
+
+    .faq {
+      padding: 5rem 5%;
+      background: #f8f8fc;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; }
+    .faq-item { margin-bottom: 2rem; }
+    .faq-item h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .faq-item p { color: #6b6b8a; }
+
+    .enterprise {
+      padding: 5rem 5%;
+      text-align: center;
+    }
+    .enterprise h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .enterprise p { color: #6b6b8a; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .enterprise a {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: #1a1a2e;
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .enterprise a:hover { background: #2a2a4e; }
+
+    footer { padding: 2rem 5%; text-align: center; color: #6b6b8a; font-size: 0.9rem; background: #1a1a2e; border-top: 1px solid #2a2a4e; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">NexaFlow</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html" class="active">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <h1>Simple, Transparent Pricing</h1>
+    <p>All projects include discovery, prototype, and ongoing support. No hidden fees.</p>
+  </section>
+
+  <section class="pricing-grid">
+
+    <div class="pricing-card">
+      <h3>Audit</h3>
+      <div class="price">$2k<span>/project</span></div>
+      <p class="description">A focused review of your workflows to identify where AI can make the biggest impact.</p>
+      <hr>
+      <ul>
+        <li>Workflow mapping session</li>
+        <li>AI opportunity analysis</li>
+        <li>Prioritized recommendations</li>
+        <li>Proof-of-concept prototype</li>
+        <li class="not-included">Full build</li>
+        <li class="not-included">Production deployment</li>
+      </ul>
+      <a href="#contact" class="pricing-cta">Start with Audit</a>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="badge">Most Popular</div>
+      <h3>Build</h3>
+      <div class="price">$8k<span>/project</span></div>
+      <p class="description">End-to-end AI system from discovery through production deployment. Everything you need to launch.</p>
+      <hr>
+      <ul>
+        <li>Full discovery & requirements</li>
+        <li>Custom AI system build</li>
+        <li>Integration with your tools</li>
+        <li>Production deployment</li>
+        <li>Team training & docs</li>
+        <li>30-day support warranty</li>
+      </ul>
+      <a href="#contact" class="pricing-cta">Start Building</a>
+    </div>
+
+    <div class="pricing-card">
+      <h3>Iterate</h3>
+      <div class="price">$3k<span>/month</span></div>
+      <p class="description">Ongoing improvements, monitoring, and new feature development for live AI systems.</p>
+      <hr>
+      <ul>
+        <li>Performance monitoring</li>
+        <li>Accuracy improvements</li>
+        <li>New capability additions</li>
+        <li>Priority support (24h response)</li>
+        <li>Monthly reporting</li>
+        <li class="not-included">New system build</li>
+      </ul>
+      <a href="#contact" class="pricing-cta">Add Iteration</a>
+    </div>
+
+  </section>
+
+  <section class="faq">
+    <h2>Common Questions</h2>
+    <div class="faq-item">
+      <h4>How long does a typical project take?</h4>
+      <p>Most "Build" projects ship in 4–8 weeks. Complex systems with multiple integrations may take longer. We always start with a prototype in the first 1–2 weeks so you can validate before committing full budget.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What if I'm not satisfied with the result?</h4>
+      <p>We offer a 30-day warranty on all Build projects. If something isn't working as specified, we fix it at no additional cost. Our goal is a system you actually use — not one that collects dust.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do you offer payment plans?</h4>
+      <p>Yes. Build projects can be split into milestones: 50% upfront, 50% on delivery. Audit and Iterate plans are paid monthly.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What's included in the warranty?</h4>
+      <p>Bugs, critical failures, and issues directly caused by our implementation. It doesn't cover scope changes, new integrations, or issues from upstream dependencies (like third-party API changes).</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I switch from Iterate to Build for new features?</h4>
+      <p>Absolutely. Many clients start with Iterate and promote features to a full Build engagement when they outgrow the scope. Just reach out — we'll scope it out and give you a fixed price.</p>
+    </div>
+  </section>
+
+  <section class="enterprise">
+    <h2>Need something custom?</h2>
+    <p>Large-scale deployments, multi-team rollouts, and custom SLA requirements — let's talk.</p>
+    <a href="mailto:hello@nexaflow.ai">Contact Us</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 NexaFlow AI Agency. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

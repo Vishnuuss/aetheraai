@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — NexaFlow</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: #1a1a2e; line-height: 1.6; }
+    a { text-decoration: none; }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #6366f1; }
+    .nav-links a { margin-left: 2rem; color: #4a4a6a; font-weight: 500; }
+    .nav-links a:hover, .nav-links a.active { color: #6366f1; }
+
+    .page-header {
+      text-align: center;
+      padding: 5rem 5% 3rem;
+    }
+    .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .page-header p { font-size: 1.2rem; color: #6b6b8a; }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      padding: 3rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .blog-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+
+    .blog-card-image {
+      height: 200px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .blog-card-content { padding: 1.75rem; }
+    .blog-card-meta { font-size: 0.85rem; color: #8888a0; margin-bottom: 0.75rem; }
+    .blog-card h3 { font-size: 1.3rem; margin-bottom: 0.75rem; line-height: 1.3; }
+    .blog-card p { color: #6b6b8a; font-size: 0.95rem; margin-bottom: 1rem; }
+    .blog-card a { color: #6366f1; font-weight: 600; font-size: 0.9rem; }
+    .blog-card a:hover { text-decoration: underline; }
+
+    .newsletter {
+      padding: 5rem 5%;
+      background: #f8f8fc;
+      text-align: center;
+    }
+    .newsletter h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .newsletter p { color: #6b6b8a; margin-bottom: 2rem; }
+    .newsletter-form {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .newsletter-form input {
+      flex: 1;
+      padding: 1rem;
+      border: 1px solid #e0e0f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      min-width: 250px;
+    }
+    .newsletter-form button {
+      padding: 1rem 2rem;
+      background: #6366f1;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .newsletter-form button:hover { background: #4f46e5; }
+
+    footer { padding: 2rem 5%; text-align: center; color: #6b6b8a; font-size: 0.9rem; background: #1a1a2e; border-top: 1px solid #2a2a4e; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">NexaFlow</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="blog.html" class="active">Blog</a>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <h1>Blog</h1>
+    <p>Insights on AI automation, RAG systems, and building production-ready AI products.</p>
+  </section>
+
+  <section class="blog-grid">
+
+    <article class="blog-card">
+      <div class="blog-card-image">📄</div>
+      <div class="blog-card-content">
+        <div class="blog-card-meta">Apr 15, 2026 · 8 min read</div>
+        <h3>Why RAG Beats Fine-Tuning for Most Use Cases</h3>
+        <p>Fine-tuning is expensive and slow. RAG gives you more control, cheaper maintenance, and real-time data access. Here's when to pick which.</p>
+        <a href="#">Read more →</a>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-card-image">⚡</div>
+      <div class="blog-card-content">
+        <div class="blog-card-meta">Apr 8, 2026 · 5 min read</div>
+        <h3>5 Workflow Automations That Paid Back in a Week</h3>
+        <p>We tracked ROI on five automations we built last quarter. The winners surprised us — and one paid back its dev cost in 48 hours.</p>
+        <a href="#">Read more →</a>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-card-image">🔍</div>
+      <div class="blog-card-content">
+        <div class="blog-card-meta">Mar 28, 2026 · 12 min read</div>
+        <h3>Evaluating RAG Systems: A Practical Framework</h3>
+        <p>How do you know if your RAG system is actually good? We share our internal evaluation pipeline — metrics, test sets, and tooling.</p>
+        <a href="#">Read more →</a>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-card-image">🤖</div>
+      <div class="blog-card-content">
+        <div class="blog-card-meta">Mar 15, 2026 · 6 min read</div>
+        <h3>GPT-4o vs Claude 3.5 vs Gemini: Which LLM for Production?</h3>
+        <p>We benchmark the top LLMs across latency, cost, and task accuracy. The winner depends heavily on your use case — here's how to choose.</p>
+        <a href="#">Read more →</a>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-card-image">🏗️</div>
+      <div class="blog-card-content">
+        <div class="blog-card-meta">Mar 1, 2026 · 10 min read</div>
+        <h3>Building a Production AI Pipeline: Lessons from 50 Deployments</h3>
+        <p>What we've learned shipping AI systems at scale. The gaps between "it works in demo" and "it works in production" are bigger than you think.</p>
+        <a href="#">Read more →</a>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-card-image">📊</div>
+      <div class="blog-card-content">
+        <div class="blog-card-meta">Feb 20, 2026 · 7 min read</div>
+        <h3>Vector DBs Compared: Pinecone vs Weaviate vs Qdrant</h3>
+        <p>We run the same RAG workload across three major vector databases. Results on latency, accuracy, and developer experience.</p>
+        <a href="#">Read more →</a>
+      </div>
+    </article>
+
+  </section>
+
+  <section class="newsletter">
+    <h2>Get articles in your inbox</h2>
+    <p>No spam. Unsubscribe anytime. We send 2–3 articles per month on AI engineering.</p>
+    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks! You\'re subscribed.');">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 NexaFlow AI Agency. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
