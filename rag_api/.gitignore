@@ -1,0 +1,27 @@
+# Environment
+.env
+*.env
+
+# API keys
+GOOGLE_API_KEY=your_key_here
+
+# Vector DB data
+chroma_data/
+
+# Uploaded files
+uploads/
+
+# Python
+__pycache__/
+*.py[cod]
+.env
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
