@@ -1,93 +1,126 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from '@/lib/gsap';
 
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const progressLineRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(true);
+  const counterRef = useRef<HTMLSpanElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
+  const curtain1Ref = useRef<HTMLDivElement>(null);
+  const curtain2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     const tl = gsap.timeline({
       onComplete: () => {
-        setVisible(false);
+        if (containerRef.current) {
+          containerRef.current.style.display = 'none';
+        }
         onComplete();
       },
     });
 
-    // Animate logo and text in
+    // 1. Reveal logo and text softly from blur
     tl.fromTo(
       [logoRef.current, textRef.current],
-      { y: 40, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' }
-    )
-    // Giant sliding line (progress) across the screen
-    .to(
-      progressLineRef.current,
-      { scaleX: 1, duration: 1.5, ease: 'power2.inOut' },
-      '-=0.5'
-    )
-    // Pulse logo
-    .to(
-      logoRef.current,
-      { scale: 1.1, duration: 0.4, yoyo: true, repeat: 1, ease: 'power1.inOut' },
-      '-=0.5'
-    )
-    // Scale up everything to exit
-    .to(
-      [logoRef.current, textRef.current],
-      { scale: 2, opacity: 0, filter: 'blur(20px)', duration: 0.6, ease: 'power4.in' },
-      '+=0.2'
-    )
-    // Line fades
-    .to(
-      progressLineRef.current,
-      { opacity: 0, duration: 0.3 },
-      '-=0.4'
-    )
-    // Container slides up
-    .to(
-      containerRef.current,
-      { yPercent: -100, duration: 0.8, ease: 'power4.inOut' },
-      '-=0.3'
+      { opacity: 0, y: 20, filter: 'blur(10px)' },
+      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, stagger: 0.2, ease: 'power3.out' }
     );
+
+    // 2. Animate counter from 0 to 100
+    tl.to(
+      { val: 0 },
+      {
+        val: 100,
+        duration: 1.5,
+        ease: 'power2.inOut',
+        onUpdate: function () {
+          if (counterRef.current) {
+            counterRef.current.innerText = Math.floor(this.targets()[0].val).toString();
+          }
+        },
+      },
+      '-=0.5'
+    );
+
+    // 3. Animate progress bar filling
+    tl.fromTo(
+      barRef.current,
+      { scaleX: 0 },
+      { scaleX: 1, duration: 1.5, ease: 'power2.inOut' },
+      '< ' // sync with counter
+    );
+
+    // 4. Logo subtle pulse at 100%
+    tl.to(
+      logoRef.current,
+      { scale: 1.05, duration: 0.3, yoyo: true, repeat: 1, ease: 'power1.inOut' },
+      '+=0.1'
+    );
+
+    // 5. Fade out center content
+    tl.to(
+      [logoRef.current, textRef.current, barRef.current],
+      { opacity: 0, scale: 0.95, filter: 'blur(10px)', duration: 0.5, ease: 'power3.in' }
+    );
+
+    // 6. Split curtain reveal (super high-end opening)
+    tl.to(
+      curtain1Ref.current,
+      { yPercent: -100, duration: 1, ease: 'power4.inOut' },
+      '+=0.1'
+    )
+    .to(
+      curtain2Ref.current,
+      { yPercent: 100, duration: 1, ease: 'power4.inOut' },
+      '<'
+    );
+
   }, [onComplete]);
 
-  if (!visible) return null;
-
   return (
-    <div ref={containerRef} className="preloader fixed inset-0 z-[99999] bg-[var(--bg)] flex flex-col items-center justify-center overflow-hidden">
+    <div ref={containerRef} className="fixed inset-0 z-[99999] pointer-events-none flex items-center justify-center">
       
-      {/* Central Logo */}
-      <div className="flex flex-col items-center z-10 mix-blend-difference">
-        <img 
-          ref={logoRef}
-          src="/logo-mark.png" 
-          alt="AIRA Logo" 
-          className="w-24 h-24 md:w-32 md:h-32 object-contain mb-8"
-        />
-        <div 
-          ref={textRef}
-          className="text-2xl md:text-4xl font-black tracking-widest text-[var(--text-primary)]"
-        >
-          INITIALIZING...
-        </div>
-      </div>
+      {/* High-end cinematic split curtains */}
+      <div ref={curtain1Ref} className="absolute inset-x-0 top-0 h-[50vh] bg-[#050505] origin-top border-b border-[var(--border)]" />
+      <div ref={curtain2Ref} className="absolute inset-x-0 bottom-0 h-[50vh] bg-[#050505] origin-bottom border-t border-[var(--border)]" />
 
-      {/* Massive Sliding Line at bottom */}
-      <div className="absolute bottom-12 md:bottom-24 left-0 w-full h-[2px] bg-[var(--border)] px-6 md:px-24 box-border">
-        <div className="w-full h-full relative overflow-hidden">
-          <div
-            ref={progressLineRef}
-            className="absolute inset-y-0 left-0 bg-[var(--accent)] origin-left w-full shadow-[0_0_20px_var(--accent)]"
-            style={{ transform: 'scaleX(0)' }}
+      {/* Center UI */}
+      <div className="relative z-10 flex flex-col items-center">
+        
+        {/* Floating Logo */}
+        <div className="relative w-28 h-28 md:w-32 md:h-32 mb-10 flex items-center justify-center">
+          <div className="absolute inset-0 bg-[var(--accent)] opacity-20 blur-[50px] rounded-full animate-pulse" />
+          <img 
+            ref={logoRef}
+            src="/logo-mark.png" 
+            alt="AIRA" 
+            className="w-full h-full object-contain relative z-10"
           />
         </div>
+
+        {/* Text Details */}
+        <div ref={textRef} className="flex flex-col items-center">
+          <div className="flex items-center gap-4 text-xs font-mono tracking-[0.5em] text-[var(--text-muted)] uppercase mb-6">
+            <span className="text-[var(--text-primary)]">AIRA</span>
+            <span className="w-10 h-px bg-[var(--border)]" />
+            <span>LOADING <span ref={counterRef} className="text-[var(--accent)] font-bold inline-block w-[3ch] text-right">0</span>%</span>
+          </div>
+          
+          {/* Progress Bar Container */}
+          <div className="w-48 md:w-64 h-[1px] bg-[var(--border)] overflow-hidden relative">
+            <div 
+              ref={barRef}
+              className="absolute inset-y-0 left-0 bg-[var(--accent)] origin-left shadow-[0_0_10px_var(--accent)]"
+              style={{ transform: 'scaleX(0)' }}
+            />
+          </div>
+        </div>
+        
       </div>
       
     </div>
