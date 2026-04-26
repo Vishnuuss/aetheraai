@@ -40,10 +40,12 @@ export default function BlogPage() {
         <div className="max-w-[1400px] mx-auto px-6">
           <header className="mb-24">
             <div className="text-xs font-mono tracking-widest text-[var(--accent)] uppercase mb-6">[ INTELLIGENCE ]</div>
-            <h1 ref={titleRef} className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.92]">
-              {'INSIGHTS & ARCHITECTURE'.split('').map((char, i) => (
-                <span key={i} className="char inline-block" style={{ perspective: '500px' }}>
-                  {char === ' ' ? '\u00A0' : char}
+            <h1 ref={titleRef} className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.92] flex flex-wrap gap-x-[0.25em]">
+              {'INSIGHTS & ARCHITECTURE'.split(' ').map((word, wIdx) => (
+                <span key={wIdx} className="inline-block">
+                  {word.split('').map((char, i) => (
+                    <span key={i} className="char inline-block" style={{ perspective: '500px' }}>{char}</span>
+                  ))}
                 </span>
               ))}
             </h1>

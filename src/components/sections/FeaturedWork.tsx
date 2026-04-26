@@ -103,10 +103,12 @@ export default function FeaturedWork() {
             <div className="text-xs font-mono tracking-widest text-[var(--accent)] uppercase mb-6">
               [ RECENT WORK ]
             </div>
-            <h2 ref={titleRef} className="text-5xl md:text-7xl font-black tracking-tighter overflow-hidden">
-              {'Selected Projects'.split('').map((char, i) => (
-                <span key={i} className="char inline-block" style={{ perspective: '500px' }}>
-                  {char === ' ' ? '\u00A0' : char}
+            <h2 ref={titleRef} className="text-5xl md:text-7xl font-black tracking-tighter flex flex-wrap gap-x-[0.25em]">
+              {'Selected Projects'.split(' ').map((word, wIdx) => (
+                <span key={wIdx} className="inline-block">
+                  {word.split('').map((char, i) => (
+                    <span key={i} className="char inline-block" style={{ perspective: '500px' }}>{char}</span>
+                  ))}
                 </span>
               ))}
             </h2>

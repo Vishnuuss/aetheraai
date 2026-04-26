@@ -112,10 +112,12 @@ export default function ServicesGrid() {
 
       <div className="max-w-[1400px] mx-auto px-6 mt-32 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-          <h2 ref={titleRef} className="text-5xl md:text-7xl font-black tracking-tighter overflow-hidden uppercase max-w-2xl">
-            {'Core Offerings'.split('').map((char, i) => (
-              <span key={i} className="char inline-block">
-                {char === ' ' ? '\u00A0' : char}
+          <h2 ref={titleRef} className="text-5xl md:text-7xl font-black tracking-tighter uppercase max-w-2xl flex flex-wrap gap-x-[0.25em]">
+            {'Core Offerings'.split(' ').map((word, wIdx) => (
+              <span key={wIdx} className="inline-block">
+                {word.split('').map((char, i) => (
+                  <span key={i} className="char inline-block">{char}</span>
+                ))}
               </span>
             ))}
           </h2>

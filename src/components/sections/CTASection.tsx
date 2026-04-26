@@ -37,10 +37,12 @@ export default function CTASection() {
           [ LET&apos;S BUILD ]
         </div>
 
-        <h2 ref={textRef} className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter mb-16 leading-[0.95]">
-          {'READY TO BUILD SOMETHING THAT SCALES?'.split('').map((char, i) => (
-            <span key={i} className="char inline-block">
-              {char === ' ' ? '\u00A0' : char}
+        <h2 ref={textRef} className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter mb-16 leading-[1.05] flex flex-wrap justify-center gap-x-[0.3em]">
+          {'READY TO BUILD SOMETHING THAT SCALES?'.split(' ').map((word, i) => (
+            <span key={i} className="inline-block">
+              {word.split('').map((char, j) => (
+                <span key={j} className="char inline-block">{char}</span>
+              ))}
             </span>
           ))}
         </h2>

@@ -104,9 +104,13 @@ export default function ContactPage() {
             {/* Left Column */}
             <div>
               <div className="text-xs font-mono tracking-widest text-[var(--accent)] uppercase mb-6 fade-in-up">[ INITIATE ]</div>
-              <h1 ref={titleRef} className="text-6xl md:text-8xl font-black tracking-tighter mb-10 leading-[0.92]">
-                {"LET'S BUILD SOMETHING.".split('').map((char, i) => (
-                  <span key={i} className="char inline-block" style={{ perspective: '500px' }}>{char === ' ' ? '\u00A0' : char}</span>
+              <h1 ref={titleRef} className="text-5xl md:text-7xl font-black tracking-tighter mb-10 leading-[0.92] flex flex-wrap gap-x-[0.25em]">
+                {"LET'S BUILD SOMETHING.".split(' ').map((word, wIdx) => (
+                  <span key={wIdx} className="inline-block">
+                    {word.split('').map((char, i) => (
+                      <span key={i} className="char inline-block" style={{ perspective: '500px' }}>{char}</span>
+                    ))}
+                  </span>
                 ))}
               </h1>
               
