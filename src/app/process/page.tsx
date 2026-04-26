@@ -41,44 +41,46 @@ export default function ProcessPage() {
     <PageTransition>
       <main className="min-h-screen bg-[var(--bg)]">
         {/* Hero */}
-        <section className="pt-40 pb-16 px-6 text-center">
-          <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6">
+        <section className="pt-40 pb-16 px-6 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,255,148,0.05)_0%,transparent_50%)] pointer-events-none" />
+          <div className="text-xs font-mono tracking-widest text-[var(--accent)] uppercase mb-6">[ FRAMEWORK ]</div>
+          <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-none">
             HOW WE WORK
           </h1>
-          <p className="text-xl text-[var(--text-muted)] max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed">
             No endless discovery phases. No vague deliverables. We build fast, show progress weekly, and deploy to production.
           </p>
         </section>
 
-        {/* Timeline Component (Reused from Home but works well standalone here) */}
+        {/* Timeline Component */}
         <ProcessTimeline />
 
         {/* FAQ */}
         <section className="py-32 px-6 bg-[var(--surface)] border-t border-[var(--border)]">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold mb-16 text-center">Common Questions</h2>
+          <div className="max-w-[1000px] mx-auto">
+            <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-16 text-center">Common Questions</h2>
             
             <div className="space-y-4">
               {faqs.map((faq, i) => (
-                <div key={i} className="border border-[var(--border)] rounded-sm bg-[var(--bg)] overflow-hidden">
+                <div key={i} className="border border-[var(--border)] rounded-2xl bg-[var(--bg)] overflow-hidden transition-all duration-300 hover:border-[var(--text-muted)]">
                   <button 
-                    className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none hover:bg-[var(--surface)] transition-colors"
+                    className="w-full px-8 py-6 flex items-center justify-between text-left focus:outline-none"
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   >
-                    <span className="font-bold text-lg pr-8">{faq.q}</span>
-                    <span className="text-[var(--accent)] shrink-0">
+                    <span className="font-bold text-xl pr-8">{faq.q}</span>
+                    <span className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-colors ${openFaq === i ? 'bg-[var(--accent)] text-black' : 'bg-[var(--surface)] text-[var(--accent)]'}`}>
                       {openFaq === i ? <Minus size={20} /> : <Plus size={20} />}
                     </span>
                   </button>
                   
                   <div 
-                    className="accordion-content"
+                    className="accordion-content transition-all duration-500 ease-in-out"
                     style={{ 
-                      maxHeight: openFaq === i ? '200px' : '0px',
+                      maxHeight: openFaq === i ? '300px' : '0px',
                       opacity: openFaq === i ? 1 : 0
                     }}
                   >
-                    <div className="px-6 pb-6 text-[var(--text-muted)] leading-relaxed">
+                    <div className="px-8 pb-8 pt-2 text-[var(--text-muted)] text-lg leading-relaxed">
                       {faq.a}
                     </div>
                   </div>
@@ -86,10 +88,13 @@ export default function ProcessPage() {
               ))}
             </div>
 
-            <div className="mt-24 text-center">
-              <h3 className="text-2xl font-bold mb-8">Ready to get started?</h3>
-              <MagneticButton className="px-8 py-4 bg-[var(--accent)] text-black font-bold uppercase tracking-wide hover:bg-white transition-colors inline-block">
-                <Link href="/contact">Start The Process →</Link>
+            <div className="mt-32 text-center bg-[var(--bg)] border border-[var(--border)] p-16 rounded-3xl relative overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,148,0.05)_0%,transparent_100%)]" />
+              <h3 className="text-4xl font-black mb-8 relative z-10">Ready to initiate?</h3>
+              <MagneticButton className="px-10 py-5 bg-[var(--accent)] text-black font-bold uppercase tracking-widest text-sm rounded-full hover:bg-white transition-all duration-300 shadow-[0_0_30px_rgba(0,255,148,0.2)] hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] relative z-10">
+                <Link href="/contact" className="flex items-center gap-3">
+                  Start The Process <span>→</span>
+                </Link>
               </MagneticButton>
             </div>
           </div>

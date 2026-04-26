@@ -1,72 +1,75 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { gsap, ScrollTrigger } from '@/lib/gsap';
+import { gsap } from '@/lib/gsap';
 
 const steps = [
-  { num: '01', title: 'DISCOVER', desc: 'Audit systems, map workflows' },
-  { num: '02', title: 'ARCHITECT', desc: 'Design flows, pick tech stack' },
-  { num: '03', title: 'BUILD', desc: 'Sprints with weekly demos' },
-  { num: '04', title: 'LAUNCH', desc: 'Deploy, train, and support' }
+  { num: '01', title: 'DISCOVER', desc: 'Deep audit of systems, workflows, and pain points.', icon: '🔍' },
+  { num: '02', title: 'ARCHITECT', desc: 'Blueprint the solution. Design flows that scale.', icon: '⚙️' },
+  { num: '03', title: 'BUILD', desc: 'Agile sprints with weekly demos. Progress, not promises.', icon: '🚀' },
+  { num: '04', title: 'LAUNCH', desc: 'Deploy to production. Train your team. 30-day support.', icon: '✅' }
 ];
 
 export default function ProcessTimeline() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const stepsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const lineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Only apply horizontal scroll on desktop
-    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
-    if (!isDesktop || !sectionRef.current || !scrollContainerRef.current) return;
-
-    const sections = gsap.utils.toArray('.process-step');
-    
-    gsap.to(sections, {
-      xPercent: -100 * (sections.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        pin: true,
-        scrub: 1,
-        snap: 1 / (sections.length - 1),
-        end: () => "+=" + scrollContainerRef.current?.offsetWidth
-      }
-    });
-
+    if (!sectionRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(lineRef.current, { scaleY: 0 }, {
+        scaleY: 1, ease: 'none',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 60%', end: 'bottom 40%', scrub: 1 },
+      });
+      stepsRef.current.forEach((step, i) => {
+        if (!step) return;
+        gsap.fromTo(step.querySelector('.step-dot'), { scale: 0 }, {
+          scale: 1, duration: 0.8, ease: 'elastic.out(1,0.5)',
+          scrollTrigger: { trigger: step, start: 'top 75%' },
+        });
+        gsap.fromTo(step.querySelector('.step-content'),
+          { x: i % 2 === 0 ? 80 : -80, opacity: 0, filter: 'blur(10px)' },
+          { x: 0, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power3.out',
+            scrollTrigger: { trigger: step, start: 'top 75%' } }
+        );
+      });
+    }, sectionRef);
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 md:h-screen md:py-0 flex flex-col justify-center bg-[var(--bg)] relative overflow-hidden">
+    <section ref={sectionRef} className="py-32 md:py-48 bg-[var(--bg)] relative overflow-hidden">
       <div className="grid-bg absolute inset-0 opacity-20 pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 w-full mb-12 md:mb-24">
-        <h2 className="text-xs font-mono tracking-widest text-[var(--text-muted)] uppercase">
-          [ OUR METHODOLOGY ]
-        </h2>
-      </div>
-
-      {/* Horizontal Scroll Container */}
-      <div 
-        ref={scrollContainerRef}
-        className="flex flex-col md:flex-row w-full md:w-[400vw] h-full items-center px-6 md:px-0"
-      >
-        {steps.map((step, idx) => (
-          <div 
-            key={step.num} 
-            className="process-step w-full md:w-[100vw] flex-shrink-0 flex items-center justify-center mb-16 md:mb-0"
-          >
-            <div className="max-w-2xl w-full mx-auto flex flex-col items-start px-6 md:px-12">
-              <div className="text-[6rem] md:text-[10rem] font-black text-transparent stroke-text leading-none mb-4 opacity-20"
-                   style={{ WebkitTextStroke: '2px var(--border)' }}>
-                {step.num}
-              </div>
-              <h3 className="text-4xl md:text-6xl font-bold mb-4">{step.title}</h3>
-              <p className="text-[var(--text-muted)] text-xl md:text-2xl">{step.desc}</p>
-              
-              <div className="mt-8 h-1 w-0 bg-[var(--accent)] group-hover:w-full transition-all duration-500" />
-            </div>
+      <div className="max-w-[1200px] mx-auto px-6 relative z-10">
+        <div className="text-center mb-24">
+          <div className="text-xs font-mono tracking-widest text-[var(--accent)] uppercase mb-6">[ OUR METHODOLOGY ]</div>
+          <h2 className="text-5xl md:text-7xl font-black tracking-tighter">How We Ship</h2>
+        </div>
+        <div className="relative">
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-[var(--border)] -translate-x-1/2">
+            <div ref={lineRef} className="absolute inset-0 bg-[var(--accent)] origin-top shadow-[0_0_15px_var(--accent-glow)]" style={{ transform: 'scaleY(0)' }} />
           </div>
-        ))}
+          <div className="space-y-24 md:space-y-32">
+            {steps.map((step, idx) => (
+              <div key={step.num} ref={(el) => { stepsRef.current[idx] = el; }}
+                className={`relative flex items-start gap-8 md:gap-0 ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+                <div className="step-dot absolute left-8 md:left-1/2 -translate-x-1/2 z-20 w-6 h-6 rounded-full bg-[var(--accent)] border-4 border-[var(--bg)] shadow-[0_0_20px_var(--accent-glow)]" />
+                <div className={`step-content pl-20 md:pl-0 md:w-[45%] ${idx % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
+                  <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-8 md:p-10 hover:border-[var(--text-muted)] transition-colors duration-500">
+                    <div className="flex items-center gap-4 mb-6" style={{ justifyContent: idx % 2 === 0 ? 'flex-end' : 'flex-start' }}>
+                      <span className="text-3xl">{step.icon}</span>
+                      <span className="font-mono text-sm tracking-widest text-[var(--accent)]">{step.num}</span>
+                    </div>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">{step.title}</h3>
+                    <p className="text-[var(--text-muted)] text-lg leading-relaxed">{step.desc}</p>
+                  </div>
+                </div>
+                <div className="hidden md:block md:w-[45%]" />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

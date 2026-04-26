@@ -15,34 +15,26 @@ export default function WorkPage() {
 
   useEffect(() => {
     if (!gridRef.current) return;
-
     const ctx = gsap.context(() => {
-      // Out animation
       gsap.to('.work-card', {
-        scale: 0.9,
-        opacity: 0,
-        duration: 0.3,
-        stagger: 0.05,
+        scale: 0.92, opacity: 0, y: -20, duration: 0.3, stagger: 0.04, ease: 'power2.in',
         onComplete: () => {
-          // Filter data
-          const newFiltered = activeFilter === 'ALL' 
-            ? caseStudies 
+          const newFiltered = activeFilter === 'ALL'
+            ? caseStudies
             : caseStudies.filter(c => c.category.toUpperCase() === activeFilter);
           setFilteredWork(newFiltered);
         }
       });
     }, gridRef);
-
     return () => ctx.revert();
   }, [activeFilter]);
 
-  // In animation after state updates
   useEffect(() => {
     if (!gridRef.current) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo('.work-card', 
-        { scale: 0.9, opacity: 0, y: 30 },
-        { scale: 1, opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: 'back.out(1.5)' }
+      gsap.fromTo('.work-card',
+        { scale: 0.92, opacity: 0, y: 30 },
+        { scale: 1, opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'back.out(1.5)' }
       );
     }, gridRef);
     return () => ctx.revert();
@@ -50,42 +42,41 @@ export default function WorkPage() {
 
   return (
     <PageTransition>
-      <main className="min-h-screen bg-[var(--bg)] pt-32 pb-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-16">
-            OUR WORK
-          </h1>
+      <main className="min-h-screen bg-[var(--bg)] pt-36 pb-32">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <header className="mb-20">
+            <div className="text-xs font-mono tracking-widest text-[var(--accent)] uppercase mb-6">[ PORTFOLIO ]</div>
+            <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.92]">OUR WORK</h1>
+          </header>
 
           {/* Filter Bar */}
-          <div className="flex flex-wrap gap-2 md:gap-8 mb-16 border-b border-[var(--border)] pb-4">
+          <div className="flex flex-wrap gap-3 mb-20 border-b border-[var(--border)] pb-6">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
-                className={`relative text-sm md:text-base font-mono tracking-widest uppercase transition-colors duration-300 py-2 ${
-                  activeFilter === cat ? 'text-[var(--text-primary)] font-bold' : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
+                className={`relative text-xs font-mono tracking-widest uppercase transition-all duration-300 px-5 py-2.5 rounded-full border ${
+                  activeFilter === cat
+                    ? 'text-black bg-[var(--accent)] border-[var(--accent)]'
+                    : 'text-[var(--text-muted)] border-[var(--border)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)]'
                 }`}
               >
                 {cat}
-                {activeFilter === cat && (
-                  <div className="absolute bottom-[-17px] left-0 w-full h-[2px] bg-[var(--accent)] origin-left animate-in zoom-in-50 duration-300" />
-                )}
               </button>
             ))}
           </div>
 
           {/* Grid */}
-          <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-x-8 md:gap-y-24">
+          <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
             {filteredWork.map((work) => (
-              <Link 
-                key={work.slug} 
+              <Link
+                key={work.slug}
                 href={`/work/${work.slug}`}
                 className="work-card group block cursor-none"
               >
-                <div className="overflow-hidden bg-[var(--surface)] rounded-sm aspect-[4/3] relative mb-6">
-                  {/* Image Placeholder */}
-                  <div 
-                    className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105"
+                <div className="overflow-hidden bg-[var(--surface)] rounded-2xl aspect-[4/3] relative mb-6 shadow-lg shadow-black/20">
+                  <div
+                    className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-110"
                     style={{ background: work.heroGradient }}
                   >
                     <div className="absolute inset-0 opacity-20 bg-noise" />
@@ -93,11 +84,10 @@ export default function WorkPage() {
                       <span className="text-3xl font-black text-white mix-blend-overlay">{work.client}</span>
                     </div>
                   </div>
-                  
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="px-6 py-3 bg-white text-black font-bold uppercase tracking-widest text-sm rounded-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      View Case Study →
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-400 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center translate-y-4 group-hover:translate-y-0 transition-transform duration-400 text-2xl text-white">
+                      ↗
                     </div>
                   </div>
                 </div>
@@ -106,16 +96,19 @@ export default function WorkPage() {
                   <div className="text-xs font-mono tracking-widest uppercase mb-3" style={{ color: work.categoryColor }}>
                     {work.category}
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-3 text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors leading-tight">
                     {work.title}
                   </h3>
-                  <p className="text-[var(--text-muted)] leading-relaxed">
-                    {work.outcome}
-                  </p>
+                  <p className="text-[var(--text-muted)] leading-relaxed text-sm">{work.outcome}</p>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {work.techStack.slice(0, 3).map((t) => (
+                      <span key={t} className="pill-tag text-[10px]">{t}</span>
+                    ))}
+                  </div>
                 </div>
               </Link>
             ))}
-            
+
             {filteredWork.length === 0 && (
               <div className="col-span-full py-24 text-center text-[var(--text-muted)] font-mono">
                 No projects found in this category.
