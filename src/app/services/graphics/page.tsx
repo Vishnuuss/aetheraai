@@ -64,7 +64,7 @@ export default function GraphicsService() {
                   {galleryPlaceholders.map((item, i) => (
                     <div key={i} className="group relative aspect-square bg-[var(--surface)] overflow-hidden cursor-none rounded-sm">
                       <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-20 group-hover:opacity-40 transition-opacity duration-500`} />
-                      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
+                      <div className="absolute inset-0 bg-noise opacity-20" />
                       
                       <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-gradient-to-t from-black/80 to-transparent">
                         <div className="text-xs font-mono text-[var(--accent-2)] mb-1 uppercase tracking-widest">{item.category}</div>

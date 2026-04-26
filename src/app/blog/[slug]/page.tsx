@@ -67,7 +67,7 @@ export default function BlogPostPage() {
             className="w-full aspect-[21/9] rounded-sm overflow-hidden relative"
             style={{ background: post.gradient }}
           >
-            <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+            <div className="absolute inset-0 opacity-20 bg-noise" />
           </div>
         </div>
 

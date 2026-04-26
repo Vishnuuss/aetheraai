@@ -44,7 +44,7 @@ export default function BlogPage() {
                   className="aspect-video w-full overflow-hidden relative"
                   style={{ background: post.gradient }}
                 >
-                  <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+                  <div className="absolute inset-0 opacity-20 bg-noise" />
                   <div className="absolute inset-0 flex items-center justify-center p-6 text-center opacity-80 group-hover:scale-105 transition-transform duration-700">
                     <span className="text-3xl font-black text-white mix-blend-overlay uppercase tracking-tighter leading-none">{post.category}</span>
                   </div>

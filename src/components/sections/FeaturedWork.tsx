@@ -97,7 +97,7 @@ export default function FeaturedWork() {
                     className="project-img absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                     style={{ background: work.heroGradient }}
                   >
-                    <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+                    <div className="absolute inset-0 opacity-20 bg-noise" />
                     <div className="absolute inset-0 flex items-center justify-center p-12 text-center opacity-30">
                       <span className="text-4xl font-black text-white mix-blend-overlay">{work.client}</span>
                     </div>

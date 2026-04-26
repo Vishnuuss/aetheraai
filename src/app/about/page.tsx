@@ -112,7 +112,7 @@ export default function AboutPage() {
                   
                   {/* Photo placeholder */}
                   <div className="w-full aspect-square mb-8 bg-[var(--bg)] border border-[var(--border)] overflow-hidden relative">
-                     <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+                     <div className="absolute inset-0 opacity-20 bg-noise" />
                      <div className="absolute inset-0 flex items-center justify-center text-5xl font-black text-[var(--border)]">
                        {member.name.split(' ').map(n => n[0]).join('')}
                      </div>

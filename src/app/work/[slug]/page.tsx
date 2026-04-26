@@ -46,7 +46,7 @@ export default function CaseStudyPage() {
               className="w-full aspect-video rounded-sm overflow-hidden relative mb-16"
               style={{ background: work.heroGradient }}
             >
-              <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+              <div className="absolute inset-0 opacity-20 bg-noise" />
               <div className="absolute inset-0 flex items-center justify-center p-12 text-center opacity-40">
                 <span className="text-6xl md:text-8xl font-black text-white mix-blend-overlay tracking-tighter">{work.client}</span>
               </div>
@@ -141,7 +141,7 @@ export default function CaseStudyPage() {
               className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
               style={{ background: nextWork.heroGradient }}
             >
-              <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+              <div className="absolute inset-0 opacity-20 bg-noise" />
               <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-500" />
             </div>
             
